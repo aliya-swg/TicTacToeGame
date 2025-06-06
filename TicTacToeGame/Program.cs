@@ -1,4 +1,4 @@
-using TicTacToeGame.Forms;
+using Microsoft.EntityFrameworkCore;
 
 namespace TicTacToeGame
 {
@@ -10,10 +10,10 @@ namespace TicTacToeGame
         [STAThread]
         static void Main()
         {
-            //using (var context = new AppDbContext())
-            //{
-            //    context.Database.Migrate(); 
-            //}
+            using (var context = new AppDbContext())
+            {
+                context.Database.Migrate();
+            }
 
             ApplicationConfiguration.Initialize();
             Application.Run(new FirstForm());

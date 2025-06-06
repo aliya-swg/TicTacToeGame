@@ -21,7 +21,7 @@ namespace TicTacToeGame
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    Id = 1,
+                    Id = 100,
                     Name = "Admin",
                     Email = "admin@example.com",
                     Password = HashPassword.Hash("password123"),

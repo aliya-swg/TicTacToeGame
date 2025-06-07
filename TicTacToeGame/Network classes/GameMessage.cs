@@ -17,7 +17,7 @@
             row = int.Parse(coords[0]);
             col = int.Parse(coords[1]);
 
-            return parts[0]; // тип сообщения: MOVE
+            return parts[0]; 
         }
 
         public static string GameOver(string result)
@@ -29,7 +29,7 @@
         {
             var parts = message.Substring(3).Split(':');
             result = parts[1];
-            return parts[0]; // END
+            return parts[0]; 
         }
     }
 }

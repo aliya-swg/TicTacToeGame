@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            start_btn = new Custom_Controls.TextOnlyButton();
+            start_btn = new TicTacToeGame.Custom_Controls.TextOnlyButton();
             SuspendLayout();
             // 
             // start_btn
@@ -54,7 +54,9 @@
             Controls.Add(start_btn);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "FirstForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Первая форма";
             ResumeLayout(false);
         }

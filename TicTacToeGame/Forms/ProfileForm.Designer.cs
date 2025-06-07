@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            userPicture_pbx = new Custom_Controls.RoundedPictureBox();
+            userPicture_pbx = new TicTacToeGame.Custom_Controls.RoundedPictureBox();
             name_lbl = new Label();
             stars_lbl = new Label();
             starCount_lbl = new Label();
-            back_btn = new Custom_Controls.RoundedButton();
-            userPicture_btn = new Custom_Controls.RoundedButton();
-            userLogin_btn = new Custom_Controls.RoundedButton();
-            userPassword_btn = new Custom_Controls.RoundedButton();
-            exitAcc_btn = new Custom_Controls.TextOnlyButton();
+            back_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            userPicture_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            userLogin_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            userPassword_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            exitAcc_btn = new TicTacToeGame.Custom_Controls.TextOnlyButton();
             ((System.ComponentModel.ISupportInitialize)userPicture_pbx).BeginInit();
             SuspendLayout();
             // 
@@ -178,7 +178,9 @@
             Controls.Add(name_lbl);
             Controls.Add(userPicture_pbx);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "ProfileForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Профиль";
             ((System.ComponentModel.ISupportInitialize)userPicture_pbx).EndInit();
             ResumeLayout(false);

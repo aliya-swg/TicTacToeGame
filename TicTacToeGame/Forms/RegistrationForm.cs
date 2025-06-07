@@ -1,4 +1,5 @@
 ﻿using TicTacToeGame.Model;
+using TicTacToeGame.Classes;
 
 namespace TicTacToeGame.Forms
 {
@@ -11,49 +12,86 @@ namespace TicTacToeGame.Forms
 
         private void register_btn_Click(object sender, EventArgs e)
         {
+            Logger.LogInfo("Начата попытка регистрации");
+
             string name = name_txtb.Text.Trim();
             string email = email_txtb.Text.Trim();
             string password = password_txtb.Text.Trim();
             string confirmPassword = secPassword_txtb.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(password) ||
-                string.IsNullOrWhiteSpace(confirmPassword))
+            var nameValidation = ValidationHelper.ValidateUsername(name);
+            if (!nameValidation.IsValid)
             {
-                MessageBox.Show("Все поля обязательны для заполнения.");
+                Logger.LogWarning($"Регистрация не выполнена: {nameValidation.ErrorMessage}");
+                MessageBox.Show(nameValidation.ErrorMessage, "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var emailValidation = ValidationHelper.ValidateEmail(email);
+            if (!emailValidation.IsValid)
+            {
+                Logger.LogWarning($"Регистрация не выполнена: {emailValidation.ErrorMessage}");
+                MessageBox.Show(emailValidation.ErrorMessage, "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var passwordValidation = ValidationHelper.ValidatePassword(password);
+            if (!passwordValidation.IsValid)
+            {
+                Logger.LogWarning($"Регистрация не выполнена: {passwordValidation.ErrorMessage}");
+                MessageBox.Show(passwordValidation.ErrorMessage, "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (password != confirmPassword)
             {
-                MessageBox.Show("Пароли не совпадают.");
+                Logger.LogWarning("Регистрация не выполнена: Пароли не совпадают");
+                MessageBox.Show("Пароли не совпадают.", "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            using (var db = new AppDbContext())
+            try
             {
-                var existingUser = db.Users.FirstOrDefault(u => u.Email == email);
-                if (existingUser != null)
+                using (var db = new AppDbContext())
                 {
-                    MessageBox.Show("Пользователь с таким email уже существует.");
-                    return;
+                    var existingUserByEmail = db.Users.FirstOrDefault(u => u.Email == email);
+                    if (existingUserByEmail != null)
+                    {
+                        Logger.LogWarning($"Регистрация не выполнена: Пользователь с email {email} уже существует");
+                        MessageBox.Show("Пользователь с таким email уже существует.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    var existingUserByName = db.Users.FirstOrDefault(u => u.Name == name);
+                    if (existingUserByName != null)
+                    {
+                        Logger.LogWarning($"Регистрация не выполнена: Пользователь с именем {name} уже существует");
+                        MessageBox.Show("Пользователь с таким именем уже существует.", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    string passwordHash = HashPassword(password);
+
+                    var user = new User
+                    {
+                        Name = name,
+                        Email = email,
+                        Password = passwordHash,
+                        NumWins = 0
+                    };
+
+                    db.Users.Add(user);
+                    db.SaveChanges();
+
+                    Logger.LogInfo($"Пользователь успешно зарегистрирован: {name} с email {email}");
+                    MessageBox.Show("Регистрация успешна!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
-
-                string passwordHash = HashPassword(password);
-
-                var user = new User
-                {
-                    Name = name,
-                    Email = email,
-                    Password = passwordHash
-                };
-
-                db.Users.Add(user);
-                db.SaveChanges();
-
-                MessageBox.Show("Регистрация успешна!");
-                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Ошибка в процессе регистрации", ex);
+                MessageBox.Show("Произошла ошибка при регистрации.", "Системная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

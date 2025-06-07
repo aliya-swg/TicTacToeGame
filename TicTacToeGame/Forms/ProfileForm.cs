@@ -9,19 +9,21 @@ namespace TicTacToeGame.Forms
         public ProfileForm()
         {
             InitializeComponent();
+            Logger.LogInfo("Открытие профиля пользователя");
 
             starCount_lbl.Text = CurrentUser.Instance.NumWins.ToString();
+            name_lbl.Text = CurrentUser.Instance.Name;
             ProfileExit += exitAcc_btn_Click;
         }
 
         private void exitAcc_btn_Click(object sender, EventArgs e)
         {
-            //ProfileExit?.Invoke(this, new EventArgs());
             Close();
         }
 
         private void userLogin_btn_Click(object sender, EventArgs e)
         {
+            Logger.LogInfo("Попытка изменения имени пользователя");
             string newName = ShowInputDialog("Изменить имя", "Введите новое имя:");
 
             if (string.IsNullOrWhiteSpace(newName))
@@ -29,18 +31,21 @@ namespace TicTacToeGame.Forms
                 if (newName == null)
                     return;
 
+                Logger.LogWarning("Попытка установить пустое имя");
                 MessageBox.Show("Имя не может быть пустым.");
                 return;
             }
 
             if (newName == CurrentUser.Instance.Name)
             {
+                Logger.LogWarning("Новое имя совпадает с текущим");
                 MessageBox.Show("Новое имя совпадает с текущим.");
                 return;
             }
 
             using (AppDbContext dbContext = new AppDbContext())
             {
+                Logger.LogInfo($"Изменение имени пользователя с {CurrentUser.Instance.Name} на {newName}");
                 CurrentUser.Instance.Name = newName;
                 dbContext.SaveChanges();
             }
@@ -179,6 +184,7 @@ namespace TicTacToeGame.Forms
 
         private void userPassword_btn_Click(object sender, EventArgs e)
         {
+            Logger.LogInfo("Открытие диалога смены пароля");
             ShowChangePasswordDialog();
         }
     }

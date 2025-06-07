@@ -31,7 +31,6 @@
             if (clickedCell.Image != null) return;
 
             clickedCell.Image = _images[_isPlayerX ? 0 : 1];
-
             _movesCount++;
 
             CheckForWinner();

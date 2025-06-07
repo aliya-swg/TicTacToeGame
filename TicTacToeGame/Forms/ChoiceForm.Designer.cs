@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            host_btn = new Custom_Controls.RoundedButton();
-            client_btn = new Custom_Controls.RoundedButton();
+            host_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            client_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
             SuspendLayout();
             // 
             // host_btn
@@ -72,6 +72,7 @@
             Controls.Add(client_btn);
             Controls.Add(host_btn);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "ChoiceForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Выбор режима";

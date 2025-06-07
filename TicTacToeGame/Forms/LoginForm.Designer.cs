@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            login_btn = new Custom_Controls.RoundedButton();
+            login_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
             label1 = new Label();
-            login_txtb = new Custom_Controls.RoundedTextBox();
-            password_txtb = new Custom_Controls.RoundedTextBox();
-            noAcc_btn = new Custom_Controls.TextOnlyButton();
+            login_txtb = new TicTacToeGame.Custom_Controls.RoundedTextBox();
+            password_txtb = new TicTacToeGame.Custom_Controls.RoundedTextBox();
+            noAcc_btn = new TicTacToeGame.Custom_Controls.TextOnlyButton();
             eyes_pbx = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)eyes_pbx).BeginInit();
@@ -139,7 +139,9 @@
             Controls.Add(login_btn);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Авторизация";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)eyes_pbx).EndInit();

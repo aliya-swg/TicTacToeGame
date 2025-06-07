@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            turn_lbl = new Label();
+            status_lbl = new Label();
             secondPlayer_pbx = new PictureBox();
             firstPlayer_pbx = new PictureBox();
             cell00_pb = new PictureBox();
@@ -40,12 +40,12 @@
             cell20_pb = new PictureBox();
             cell21_pb = new PictureBox();
             cell22_pb = new PictureBox();
-            playerTimer_lbl = new Custom_Controls.RoundedButton();
-            opponentTimer_lbl = new Custom_Controls.RoundedButton();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
+            name1_lbl = new Label();
+            name2_lbl = new Label();
             ((System.ComponentModel.ISupportInitialize)secondPlayer_pbx).BeginInit();
             ((System.ComponentModel.ISupportInitialize)firstPlayer_pbx).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cell00_pb).BeginInit();
@@ -63,16 +63,16 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
-            // turn_lbl
+            // status_lbl
             // 
-            turn_lbl.AutoSize = true;
-            turn_lbl.Font = new Font("Borsok", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            turn_lbl.ForeColor = Color.FromArgb(121, 75, 63);
-            turn_lbl.Location = new Point(419, 21);
-            turn_lbl.Name = "turn_lbl";
-            turn_lbl.Size = new Size(156, 31);
-            turn_lbl.TabIndex = 5;
-            turn_lbl.Text = "Ожидание";
+            status_lbl.AutoSize = true;
+            status_lbl.Font = new Font("Borsok", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            status_lbl.ForeColor = Color.FromArgb(121, 75, 63);
+            status_lbl.Location = new Point(419, 21);
+            status_lbl.Name = "status_lbl";
+            status_lbl.Size = new Size(156, 31);
+            status_lbl.TabIndex = 5;
+            status_lbl.Text = "Ожидание";
             // 
             // secondPlayer_pbx
             // 
@@ -184,36 +184,6 @@
             cell22_pb.TabStop = false;
             cell22_pb.Click += Cell_Click;
             // 
-            // playerTimer_lbl
-            // 
-            playerTimer_lbl.BackColor = Color.Transparent;
-            playerTimer_lbl.BaseColor = Color.FromArgb(231, 106, 137);
-            playerTimer_lbl.CornerRadius = 30;
-            playerTimer_lbl.Font = new Font("Borsok", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            playerTimer_lbl.ForeColor = Color.White;
-            playerTimer_lbl.HoverColor = Color.SlateBlue;
-            playerTimer_lbl.Location = new Point(51, 295);
-            playerTimer_lbl.Name = "playerTimer_lbl";
-            playerTimer_lbl.PressedColor = Color.DarkSlateBlue;
-            playerTimer_lbl.Size = new Size(168, 60);
-            playerTimer_lbl.TabIndex = 17;
-            playerTimer_lbl.Text = "0";
-            // 
-            // opponentTimer_lbl
-            // 
-            opponentTimer_lbl.BackColor = Color.Transparent;
-            opponentTimer_lbl.BaseColor = Color.FromArgb(81, 145, 195);
-            opponentTimer_lbl.CornerRadius = 30;
-            opponentTimer_lbl.Font = new Font("Borsok", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            opponentTimer_lbl.ForeColor = Color.White;
-            opponentTimer_lbl.HoverColor = Color.SlateBlue;
-            opponentTimer_lbl.Location = new Point(773, 295);
-            opponentTimer_lbl.Name = "opponentTimer_lbl";
-            opponentTimer_lbl.PressedColor = Color.DarkSlateBlue;
-            opponentTimer_lbl.Size = new Size(168, 60);
-            opponentTimer_lbl.TabIndex = 18;
-            opponentTimer_lbl.Text = "0";
-            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.FromArgb(217, 217, 217);
@@ -250,18 +220,40 @@
             pictureBox4.TabIndex = 22;
             pictureBox4.TabStop = false;
             // 
+            // name1_lbl
+            // 
+            name1_lbl.AutoSize = true;
+            name1_lbl.Font = new Font("Borsok", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            name1_lbl.ForeColor = Color.FromArgb(231, 106, 137);
+            name1_lbl.Location = new Point(82, 225);
+            name1_lbl.Name = "name1_lbl";
+            name1_lbl.Size = new Size(111, 31);
+            name1_lbl.TabIndex = 23;
+            name1_lbl.Text = "Игрок 1";
+            // 
+            // name2_lbl
+            // 
+            name2_lbl.AutoSize = true;
+            name2_lbl.Font = new Font("Borsok", 18F);
+            name2_lbl.ForeColor = Color.FromArgb(81, 145, 195);
+            name2_lbl.Location = new Point(804, 232);
+            name2_lbl.Name = "name2_lbl";
+            name2_lbl.Size = new Size(113, 31);
+            name2_lbl.TabIndex = 24;
+            name2_lbl.Text = "Игрок 2";
+            // 
             // NetworkGameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(999, 588);
+            Controls.Add(name2_lbl);
+            Controls.Add(name1_lbl);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(opponentTimer_lbl);
-            Controls.Add(playerTimer_lbl);
             Controls.Add(cell22_pb);
             Controls.Add(cell21_pb);
             Controls.Add(cell20_pb);
@@ -273,9 +265,11 @@
             Controls.Add(cell00_pb);
             Controls.Add(firstPlayer_pbx);
             Controls.Add(secondPlayer_pbx);
-            Controls.Add(turn_lbl);
+            Controls.Add(status_lbl);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "NetworkGameForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Игра";
             ((System.ComponentModel.ISupportInitialize)secondPlayer_pbx).EndInit();
             ((System.ComponentModel.ISupportInitialize)firstPlayer_pbx).EndInit();
@@ -297,7 +291,7 @@
         }
 
         #endregion
-        private Label turn_lbl;
+        private Label status_lbl;
         private PictureBox secondPlayer_pbx;
         private PictureBox firstPlayer_pbx;
         private PictureBox cell00_pb;
@@ -309,11 +303,11 @@
         private PictureBox cell20_pb;
         private PictureBox cell21_pb;
         private PictureBox cell22_pb;
-        private Custom_Controls.RoundedButton playerTimer_lbl;
-        private Custom_Controls.RoundedButton opponentTimer_lbl;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
+        private Label name1_lbl;
+        private Label name2_lbl;
     }
 }

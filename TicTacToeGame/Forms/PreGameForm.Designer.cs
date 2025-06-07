@@ -30,9 +30,9 @@
         {
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
-            acc_btn = new Custom_Controls.TextOnlyButton();
-            playNetwork_btn = new Custom_Controls.RoundedButton();
-            playSingle_btn = new Custom_Controls.RoundedButton();
+            acc_btn = new TicTacToeGame.Custom_Controls.TextOnlyButton();
+            playNetwork_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            playSingle_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
             stars_lbl = new Label();
             pictureBox3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -137,7 +137,9 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "PreGameForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Меню";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

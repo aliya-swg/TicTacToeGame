@@ -1,12 +1,23 @@
-﻿namespace TicTacToeGame.Classes
+﻿using System.Security.Cryptography;
+using System.Text;
+
+namespace TicTacToeGame.Classes
 {
-    public class HashPassword
+    public static class HashPassword
     {
-        static public string Hash(string password)
+        public static string Hash(string password)
         {
-            return System.Security.Cryptography.SHA256.Create()
-                .ComputeHash(System.Text.Encoding.UTF8.GetBytes(password))
-                .Select(x => x.ToString("X2")).Aggregate((s1, s2) => s1 + s2);
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return string.Join("", hashBytes.Select(b => b.ToString("X2")));
+            }
+        }
+
+        public static bool Verify(string password, string hash)
+        {
+            string computedHash = Hash(password);
+            return computedHash.Equals(hash, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

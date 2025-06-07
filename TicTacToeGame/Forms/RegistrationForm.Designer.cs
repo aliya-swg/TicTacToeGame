@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             registration_lbl = new Label();
-            register_btn = new Custom_Controls.RoundedButton();
-            email_txtb = new Custom_Controls.RoundedTextBox();
-            name_txtb = new Custom_Controls.RoundedTextBox();
-            secPassword_txtb = new Custom_Controls.RoundedTextBox();
-            password_txtb = new Custom_Controls.RoundedTextBox();
-            login_btn = new Custom_Controls.TextOnlyButton();
+            register_btn = new TicTacToeGame.Custom_Controls.RoundedButton();
+            email_txtb = new TicTacToeGame.Custom_Controls.RoundedTextBox();
+            name_txtb = new TicTacToeGame.Custom_Controls.RoundedTextBox();
+            secPassword_txtb = new TicTacToeGame.Custom_Controls.RoundedTextBox();
+            password_txtb = new TicTacToeGame.Custom_Controls.RoundedTextBox();
+            login_btn = new TicTacToeGame.Custom_Controls.TextOnlyButton();
             eyes_pbx = new PictureBox();
             eyes2_pbx = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)eyes_pbx).BeginInit();
@@ -59,7 +59,7 @@
             register_btn.CornerRadius = 33;
             register_btn.Font = new Font("Borsok", 16F);
             register_btn.ForeColor = Color.White;
-            register_btn.HoverColor = Color.SlateBlue;
+            register_btn.HoverColor = Color.FromArgb(231, 106, 127);
             register_btn.Location = new Point(302, 400);
             register_btn.Name = "register_btn";
             register_btn.PressedColor = Color.DarkSlateBlue;
@@ -173,7 +173,9 @@
             Controls.Add(registration_lbl);
             Controls.Add(register_btn);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "RegistrationForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Регистрация";
             ((System.ComponentModel.ISupportInitialize)eyes_pbx).EndInit();
             ((System.ComponentModel.ISupportInitialize)eyes2_pbx).EndInit();

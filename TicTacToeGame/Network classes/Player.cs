@@ -2,7 +2,7 @@
 {
     public class Player
     {
-        public string Symbol { get; set; } // X или O
+        public string Symbol { get; set; } 
         public bool IsHost { get; set; }
 
         public Player(string symbol, bool isHost)
